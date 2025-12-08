@@ -1,0 +1,102 @@
+# ============================================================================
+# CI Validation Workflow
+# ============================================================================
+# Purpose: Fast feedback on code quality before running expensive browser tests
+# Runs: Lint, Type Check, and Build verification
+# Triggers: Every PR and push to main branch
+# ============================================================================
+
+name: CI - Validation
+
+# ============================================================================
+# Trigger Configuration
+# ============================================================================
+on:
+  # Run on every pull request (any branch targeting any branch)
+  pull_request:
+  
+  # Run on direct pushes to main branch
+  push:
+    branches:
+      - main
+
+# ============================================================================
+# Concurrency Control
+# ============================================================================
+# Cancel in-progress runs when new commits are pushed to the same PR
+# This saves runner minutes and provides faster feedback
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# ============================================================================
+# Jobs
+# ============================================================================
+jobs:
+  # --------------------------------------------------------------------------
+  # Job: Code Quality Validation
+  # --------------------------------------------------------------------------
+  validate:
+    name: Lint + TypeCheck + Build
+    runs-on: ubuntu-latest
+    
+    steps:
+      # ------------------------------------------------------------------------
+      # Step 1: Checkout Repository
+      # ------------------------------------------------------------------------
+      # Downloads the repository code to the runner
+      # This is always the first step in any workflow
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      # ------------------------------------------------------------------------
+      # Step 2: Setup Node.js
+      # ------------------------------------------------------------------------
+      # Installs Node.js on the runner
+      # Version 20 is the current LTS (Long Term Support) version
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      # ------------------------------------------------------------------------
+      # Step 3: Setup pnpm
+      # ------------------------------------------------------------------------
+      # Your monorepo uses pnpm as the package manager
+      # This installs pnpm globally on the runner
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      
+      # ------------------------------------------------------------------------
+      # Step 4: Install Dependencies
+      # ------------------------------------------------------------------------
+      # --frozen-lockfile ensures we use exact versions from pnpm-lock.yaml
+      # This prevents "works on my machine" issues
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      # ------------------------------------------------------------------------
+      # Step 5: Run ESLint
+      # ------------------------------------------------------------------------
+      # Checks code style and catches common bugs
+      # Runs on the portfolio app specifically
+      - name: Run lint
+        run: pnpm --filter portfolio lint
+      
+      # ------------------------------------------------------------------------
+      # Step 6: Run TypeScript Type Check
+      # ------------------------------------------------------------------------
+      # Verifies all TypeScript types are correct
+      # Runs before build to catch type errors early
+      - name: Run type check
+        run: pnpm --filter portfolio exec tsc --noEmit
+      
+      # ------------------------------------------------------------------------
+      # Step 7: Build Application
+      # ------------------------------------------------------------------------
+      # Ensures the app can build successfully
+      # This catches build-time errors (imports, config issues, etc.)
+      - name: Build application
+        run: pnpm --filter portfolio build
