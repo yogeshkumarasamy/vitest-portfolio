@@ -112,11 +112,9 @@ jobs:
       # What happens on failure:
       # - Job exits with code 1
       # - GitHub marks PR check as failed
-      # - Logs are preserved in job output
+      # Logs are preserved in job output
       - name: Run browser tests
-        run:
-          pnpm --filter portfolio exec vitest run \ --reporter=json \
-          --outputFile=test-results/test-report.json
+        run: pnpm --filter portfolio test:browser:headless
 
       # ------------------------------------------------------------------------
       # Step 7: Upload Test Results (On Failure)
