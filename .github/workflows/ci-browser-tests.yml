@@ -92,7 +92,8 @@ jobs:
       #
       # This step takes ~40 seconds on fresh install
       - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium
+        run:
+          pnpm --filter portfolio exec playwright install --with-deps chromium
 
       # ------------------------------------------------------------------------
       # Step 6: Run Browser Tests (Headless)
