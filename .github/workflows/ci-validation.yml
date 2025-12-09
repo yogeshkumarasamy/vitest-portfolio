@@ -14,7 +14,7 @@ name: CI - Validation
 on:
   # Run on every pull request (any branch targeting any branch)
   pull_request:
-  
+
   # Run on direct pushes to main branch
   push:
     branches:
@@ -37,9 +37,9 @@ jobs:
   # Job: Code Quality Validation
   # --------------------------------------------------------------------------
   validate:
-    name: Lint + TypeCheck + Build
+    name: Lint + Formatting + Build + Type Check
     runs-on: ubuntu-latest
-    
+
     steps:
       # ------------------------------------------------------------------------
       # Step 1: Checkout Repository
@@ -48,7 +48,7 @@ jobs:
       # This is always the first step in any workflow
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       # ------------------------------------------------------------------------
       # Step 2: Setup Node.js
       # ------------------------------------------------------------------------
@@ -58,17 +58,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
       # ------------------------------------------------------------------------
       # Step 3: Setup pnpm
       # ------------------------------------------------------------------------
       # Your monorepo uses pnpm as the package manager
       # This installs pnpm globally on the runner
+      # Version is read from package.json "packageManager" field
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
-      
+          run_install: false
+
       # ------------------------------------------------------------------------
       # Step 4: Install Dependencies
       # ------------------------------------------------------------------------
@@ -76,27 +77,9 @@ jobs:
       # This prevents "works on my machine" issues
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      
+
       # ------------------------------------------------------------------------
-      # Step 5: Run ESLint
+      # Step 5: Run ESLint + Format Check + Build Check + Type Check
       # ------------------------------------------------------------------------
-      # Checks code style and catches common bugs
-      # Runs on the portfolio app specifically
       - name: Run lint
-        run: pnpm --filter portfolio lint
-      
-      # ------------------------------------------------------------------------
-      # Step 6: Run TypeScript Type Check
-      # ------------------------------------------------------------------------
-      # Verifies all TypeScript types are correct
-      # Runs before build to catch type errors early
-      - name: Run type check
-        run: pnpm --filter portfolio exec tsc --noEmit
-      
-      # ------------------------------------------------------------------------
-      # Step 7: Build Application
-      # ------------------------------------------------------------------------
-      # Ensures the app can build successfully
-      # This catches build-time errors (imports, config issues, etc.)
-      - name: Build application
-        run: pnpm --filter portfolio build
+        run: pnpm check

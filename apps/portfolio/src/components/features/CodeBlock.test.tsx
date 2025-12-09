@@ -17,7 +17,9 @@ describe('CodeBlock', () => {
   });
 
   it('displays language label', async () => {
-    const screen = await render(<CodeBlock code={mockCode} language="javascript" />);
+    const screen = await render(
+      <CodeBlock code={mockCode} language="javascript" />
+    );
 
     const language = screen.getByTestId('code-language');
 
@@ -32,9 +34,9 @@ describe('CodeBlock', () => {
         ...originalClipboard,
         writeText,
       },
-    writable: true,
-    configurable: true,
-    enumerable: true,
+      writable: true,
+      configurable: true,
+      enumerable: true,
     });
 
     const screen = await render(<CodeBlock code={mockCode} />);
@@ -45,12 +47,12 @@ describe('CodeBlock', () => {
     await userEvent.click(copyButton);
     expect(writeText).toHaveBeenCalledWith(mockCode);
     writeText.mockReset();
-  Object.defineProperty(navigator, 'clipboard', {
-    value: originalClipboard,
-    writable: true,
-    configurable: true,
-    enumerable: true,
-  });
+    Object.defineProperty(navigator, 'clipboard', {
+      value: originalClipboard,
+      writable: true,
+      configurable: true,
+      enumerable: true,
+    });
   });
 
   it('shows line numbers by default', async () => {
@@ -62,7 +64,9 @@ describe('CodeBlock', () => {
   });
 
   it('hides line numbers when showLineNumbers is false', async () => {
-    const screen = await render(<CodeBlock code={mockCode} showLineNumbers={false} />);
+    const screen = await render(
+      <CodeBlock code={mockCode} showLineNumbers={false} />
+    );
 
     const pre = screen.getByTestId('code-pre');
 

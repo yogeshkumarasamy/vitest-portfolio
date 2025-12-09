@@ -1,19 +1,19 @@
-import { Link, useLocation } from "react-router-dom";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/Button";
-import { useState } from "react";
+import { Link, useLocation } from 'react-router-dom';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/Button';
+import { useState } from 'react';
 
 const navItems = [
-  { path: "/", label: "Home" },
-  { path: "/about", label: "About" },
-  { path: "/experience", label: "Experience" },
-  { path: "/skills", label: "Skills" },
-  { path: "/projects", label: "Projects" },
-  { path: "/architecture", label: "Architecture" },
-  { path: "/microfrontends", label: "Microfrontends" },
-  { path: "/tooling", label: "Tooling" },
-  { path: "/blog", label: "Blog" },
-  { path: "/contact", label: "Contact" },
+  { path: '/', label: 'Home' },
+  { path: '/about', label: 'About' },
+  { path: '/experience', label: 'Experience' },
+  { path: '/skills', label: 'Skills' },
+  { path: '/projects', label: 'Projects' },
+  { path: '/architecture', label: 'Architecture' },
+  { path: '/microfrontends', label: 'Microfrontends' },
+  { path: '/tooling', label: 'Tooling' },
+  { path: '/blog', label: 'Blog' },
+  { path: '/contact', label: 'Contact' },
 ];
 
 export function Header() {
@@ -21,23 +21,23 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
           <span className="text-2xl font-bold">Portfolio</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+        <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
           {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
               className={cn(
-                "transition-colors hover:text-foreground/80",
+                'hover:text-foreground/80 transition-colors',
                 location.pathname === item.path
-                  ? "text-foreground"
-                  : "text-foreground/60"
+                  ? 'text-foreground'
+                  : 'text-foreground/60'
               )}
             >
               {item.label}
@@ -72,18 +72,18 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t">
-          <nav className="container py-4 space-y-2">
+        <div className="border-t md:hidden">
+          <nav className="container space-y-2 py-4">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
-                  "block px-4 py-2 rounded-md transition-colors hover:bg-accent",
+                  'hover:bg-accent block rounded-md px-4 py-2 transition-colors',
                   location.pathname === item.path
-                    ? "bg-accent text-foreground"
-                    : "text-foreground/60"
+                    ? 'bg-accent text-foreground'
+                    : 'text-foreground/60'
                 )}
               >
                 {item.label}

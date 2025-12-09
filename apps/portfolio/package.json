@@ -1,19 +1,20 @@
 {
   "name": "portfolio",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
+    "build": "vite build",
+    "check-types": "tsc --project tsconfig.json",
     "dev": "vite",
-    "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "preview": "vite preview",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage",
     "test:browser": "vitest",
-    "test:browser:headless": "vitest --run --maxWorkers=2 --browser.headless=true"
+    "test:browser:headless": "vitest --run --browser.headless=true --reporter=json --outputFile=test-results/test-report.json",
+    "test:coverage": "vitest run --coverage",
+    "test:run": "vitest run",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "@vitest/browser-playwright": "^4.0.15",
@@ -26,7 +27,7 @@
     "vitest-browser-react": "^2.0.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
+    "@repo/eslint-config": "workspace:*",
     "@tailwindcss/vite": "^4.1.17",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
@@ -36,12 +37,8 @@
     "@vitest/ui": "^4.0.15",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^9.39.1",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.24",
-    "globals": "^16.5.0",
     "playwright": "^1.57.0",
-    "typescript": "~5.9.3",
-    "typescript-eslint": "^8.46.4",
+    "typescript": "catalog:",
     "vite": "^7.2.4",
     "vitest": "^4.0.15"
   }

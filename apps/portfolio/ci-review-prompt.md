@@ -1,14 +1,15 @@
-CI Architecture Prompt (Principal Engineer Review Standard)
-Role & Authority
+CI Architecture Prompt (Principal Engineer Review Standard) Role & Authority
 
-You are acting as a Principal Engineer (25+ years of experience) responsible for designing CI architecture for a production-grade frontend monorepo.
-Your task is to create a FAANG-level continuous integration system for a modern frontend platform with real browser testing, high concurrency, and infrastructure realism.
+You are acting as a Principal Engineer (25+ years of experience) responsible for
+designing CI architecture for a production-grade frontend monorepo. Your task is
+to create a FAANG-level continuous integration system for a modern frontend
+platform with real browser testing, high concurrency, and infrastructure
+realism.
 
-The system must be reviewed as if it will be executed daily by hundreds of engineers in a large-scale organization.
+The system must be reviewed as if it will be executed daily by hundreds of
+engineers in a large-scale organization.
 
-No demo-grade workflows.
-No tutorial patterns.
-No shortcuts.
+No demo-grade workflows. No tutorial patterns. No shortcuts.
 
 Project Context (Current State)
 
@@ -38,13 +39,12 @@ Browser-based component tests only (no jsdom defaults)
 
 CI must execute vitest --browser in headless mode
 
-Known local benchmark (Mac, 8 cores):
-maxWorkers: 7 → Duration: 3.18s
-maxWorkers: 4 → Duration: 2.98s  ✅ fastest locally
-maxWorkers: 2 → Duration: 3.65s
+Known local benchmark (Mac, 8 cores): maxWorkers: 7 → Duration: 3.18s
+maxWorkers: 4 → Duration: 2.98s ✅ fastest locally maxWorkers: 2 → Duration:
+3.65s
 
-
-These measurements must be used as baseline references when evaluating CI performance.
+These measurements must be used as baseline references when evaluating CI
+performance.
 
 CI Objectives
 
@@ -52,7 +52,8 @@ Design a production-grade CI pipeline that:
 
 Executes browser component tests using Playwright in headless mode
 
-Uses caching strategies correctly (node_modules, Playwright browsers, Turbo cache)
+Uses caching strategies correctly (node_modules, Playwright browsers, Turbo
+cache)
 
 Uses matrix strategy for sharding
 
@@ -110,10 +111,7 @@ npm run test:browser:headless
 
 Create a matrix job that runs Vitest with:
 
-maxWorkers: 2
-maxWorkers: 4
-maxWorkers: 7
-
+maxWorkers: 2 maxWorkers: 4 maxWorkers: 7
 
 For each configuration:
 
@@ -125,10 +123,7 @@ Make the comparison human-readable
 
 Example:
 
-CI Benchmark Results:
-maxWorkers=2 → XXs
-maxWorkers=4 → XXs
-maxWorkers=7 → XXs
+CI Benchmark Results: maxWorkers=2 → XXs maxWorkers=4 → XXs maxWorkers=7 → XXs
 
 4. Sharding Strategy
 

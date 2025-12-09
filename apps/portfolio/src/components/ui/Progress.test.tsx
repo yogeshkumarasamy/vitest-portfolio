@@ -18,7 +18,9 @@ describe('Progress', () => {
 
     const indicator = screen.getByTestId('progress-indicator');
 
-    await expect.element(indicator).toHaveStyle({ transform: 'translateX(-50%)' });
+    await expect
+      .element(indicator)
+      .toHaveStyle({ transform: 'translateX(-50%)' });
   });
 
   it('renders with 100% progress', async () => {
@@ -26,7 +28,9 @@ describe('Progress', () => {
 
     const indicator = screen.getByTestId('progress-indicator');
 
-    await expect.element(indicator).toHaveStyle({ transform: 'translateX(-0%)' });
+    await expect
+      .element(indicator)
+      .toHaveStyle({ transform: 'translateX(-0%)' });
   });
 
   it('renders with custom max value', async () => {
@@ -34,7 +38,9 @@ describe('Progress', () => {
 
     const indicator = screen.getByTestId('progress-indicator');
 
-    await expect.element(indicator).toHaveStyle({ transform: 'translateX(-50%)' });
+    await expect
+      .element(indicator)
+      .toHaveStyle({ transform: 'translateX(-50%)' });
   });
 
   it('renders with custom className', async () => {

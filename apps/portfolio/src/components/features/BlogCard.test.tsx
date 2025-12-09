@@ -6,7 +6,8 @@ import { BlogCard } from './BlogCard';
 describe('BlogCard', () => {
   const mockBlogData = {
     title: 'Understanding React Server Components',
-    excerpt: 'A deep dive into React Server Components and how they change the way we build web applications.',
+    excerpt:
+      'A deep dive into React Server Components and how they change the way we build web applications.',
     date: 'Dec 5, 2024',
     author: 'John Doe',
     readTime: '5 min read',
@@ -39,7 +40,7 @@ describe('BlogCard', () => {
 
   it('renders without author and read time', async () => {
     const screen = await render(
-      <BlogCard 
+      <BlogCard
         title={mockBlogData.title}
         excerpt={mockBlogData.excerpt}
         date={mockBlogData.date}
@@ -67,7 +68,9 @@ describe('BlogCard', () => {
 
   it('calls onClick when card is clicked', async () => {
     const handleClick = vi.fn();
-    const screen = await render(<BlogCard {...mockBlogData} onClick={handleClick} />);
+    const screen = await render(
+      <BlogCard {...mockBlogData} onClick={handleClick} />
+    );
 
     const card = screen.getByTestId('blog-card');
 
@@ -85,7 +88,9 @@ describe('BlogCard', () => {
   });
 
   it('renders with custom className', async () => {
-    const screen = await render(<BlogCard {...mockBlogData} className="custom-blog" />);
+    const screen = await render(
+      <BlogCard {...mockBlogData} className="custom-blog" />
+    );
 
     const card = screen.getByTestId('blog-card');
 
@@ -94,7 +99,7 @@ describe('BlogCard', () => {
 
   it('renders without tags', async () => {
     const screen = await render(
-      <BlogCard 
+      <BlogCard
         title={mockBlogData.title}
         excerpt={mockBlogData.excerpt}
         date={mockBlogData.date}

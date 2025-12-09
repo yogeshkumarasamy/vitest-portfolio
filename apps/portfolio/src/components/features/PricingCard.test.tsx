@@ -4,11 +4,7 @@ import { userEvent } from 'vitest/browser';
 import { PricingCard } from './PricingCard';
 
 describe('PricingCard', () => {
-  const mockFeatures = [
-    'Feature 1',
-    'Feature 2',
-    'Feature 3',
-  ];
+  const mockFeatures = ['Feature 1', 'Feature 2', 'Feature 3'];
 
   it('renders pricing card with all information', async () => {
     const screen = await render(
@@ -29,7 +25,9 @@ describe('PricingCard', () => {
 
     await expect.element(card).toBeInTheDocument();
     await expect.element(title).toHaveTextContent('Pro Plan');
-    await expect.element(description).toHaveTextContent('Perfect for professionals');
+    await expect
+      .element(description)
+      .toHaveTextContent('Perfect for professionals');
     await expect.element(price).toHaveTextContent('$29');
     await expect.element(period).toHaveTextContent('/month');
     await expect.element(featuresContainer).toBeInTheDocument();

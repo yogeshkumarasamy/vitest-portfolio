@@ -44,15 +44,15 @@ describe('Switch', () => {
     await expect.element(switchInput).toBeDisabled();
   });
 
-//   it('does not toggle when disabled', async () => {
-//     const screen = await render(<Switch disabled />);
+  //   it('does not toggle when disabled', async () => {
+  //     const screen = await render(<Switch disabled />);
 
-//     const switchInput = screen.getByTestId('switch');
-//     const label = screen.getByTestId('switch-label');
+  //     const switchInput = screen.getByTestId('switch');
+  //     const label = screen.getByTestId('switch-label');
 
-//     await expect.element(switchInput).not.toBeChecked();
+  //     await expect.element(switchInput).not.toBeChecked();
 
-//     await userEvent.click(label);
-//     await expect.element(switchInput).not.toBeChecked();
-//   });
+  //     await userEvent.click(label);
+  //     await expect.element(switchInput).not.toBeChecked();
+  //   });
 });

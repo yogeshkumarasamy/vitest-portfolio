@@ -36,3 +36,8 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+
+# apps/portfolio
+apps/portfolio/test-results/
+apps/portfolio/.vitest-reports/

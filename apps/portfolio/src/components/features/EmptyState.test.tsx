@@ -16,23 +16,22 @@ describe('EmptyState', () => {
 
   it('renders description when provided', async () => {
     const screen = await render(
-      <EmptyState 
-        title="No items" 
+      <EmptyState
+        title="No items"
         description="Try adjusting your search or filters"
       />
     );
 
-    const description = screen.getByText('Try adjusting your search or filters');
+    const description = screen.getByText(
+      'Try adjusting your search or filters'
+    );
 
     await expect.element(description).toBeInTheDocument();
   });
 
   it('renders icon when provided', async () => {
     const screen = await render(
-      <EmptyState 
-        title="Empty" 
-        icon={<svg data-testid="custom-icon" />}
-      />
+      <EmptyState title="Empty" icon={<svg data-testid="custom-icon" />} />
     );
 
     const icon = screen.getByTestId('empty-state-icon');
@@ -45,8 +44,8 @@ describe('EmptyState', () => {
   it('renders action button and handles click', async () => {
     const handleAction = vi.fn();
     const screen = await render(
-      <EmptyState 
-        title="No data" 
+      <EmptyState
+        title="No data"
         actionLabel="Add Item"
         onAction={handleAction}
       />
@@ -80,11 +79,7 @@ describe('EmptyState', () => {
   it('supports hover on action button', async () => {
     const handleAction = vi.fn();
     const screen = await render(
-      <EmptyState 
-        title="Empty" 
-        actionLabel="Action"
-        onAction={handleAction}
-      />
+      <EmptyState title="Empty" actionLabel="Action" onAction={handleAction} />
     );
 
     const actionButton = screen.getByTestId('empty-state-action');

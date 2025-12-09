@@ -25,7 +25,9 @@ describe('ExperienceCard', () => {
     await expect.element(position).toHaveTextContent('Senior Developer');
     await expect.element(company).toHaveTextContent('Tech Corp');
     await expect.element(duration).toHaveTextContent('2020 - 2023');
-    await expect.element(description).toHaveTextContent('Led development of enterprise applications');
+    await expect
+      .element(description)
+      .toHaveTextContent('Led development of enterprise applications');
   });
 
   it('renders technologies badges', async () => {

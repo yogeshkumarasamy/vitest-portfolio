@@ -43,16 +43,16 @@ describe('Checkbox', () => {
     await expect.element(checkbox).toBeDisabled();
   });
 
-//   it('does not toggle when disabled', async () => {
-//     const screen = await render(<Checkbox disabled />);
+  //   it('does not toggle when disabled', async () => {
+  //     const screen = await render(<Checkbox disabled />);
 
-//     const checkbox = screen.getByTestId('checkbox');
+  //     const checkbox = screen.getByTestId('checkbox');
 
-//     await expect.element(checkbox).not.toBeChecked();
-    
-//     await userEvent.click(checkbox);
-//     await expect.element(checkbox).not.toBeChecked();
-//   });
+  //     await expect.element(checkbox).not.toBeChecked();
+
+  //     await userEvent.click(checkbox);
+  //     await expect.element(checkbox).not.toBeChecked();
+  //   });
 
   it('renders with custom className', async () => {
     const screen = await render(<Checkbox className="custom-checkbox" />);
@@ -67,6 +67,8 @@ describe('Checkbox', () => {
 
     const checkbox = screen.getByTestId('checkbox');
 
-    await expect.element(checkbox).toHaveAttribute('aria-label', 'Accept terms');
+    await expect
+      .element(checkbox)
+      .toHaveAttribute('aria-label', 'Accept terms');
   });
 });

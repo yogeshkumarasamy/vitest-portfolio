@@ -3,12 +3,12 @@
 # ============================================================================
 # Purpose: Measure test execution performance across different concurrency levels
 # Goal: Determine optimal maxWorkers setting for CI environment
-# 
+#
 # Local benchmarks (Mac, 8 cores):
 # - maxWorkers=7 → 3.18s
 # - maxWorkers=4 → 2.98s ✅ fastest locally
 # - maxWorkers=2 → 3.65s
-# 
+#
 # GitHub runners (Ubuntu, 2 cores):
 # - Results will differ due to CPU constraints
 # - This workflow measures actual CI performance
@@ -23,7 +23,7 @@ name: CI - Performance Benchmark
 on:
   # Manual trigger via GitHub Actions UI
   workflow_dispatch:
-  
+
   # Optionally run on pushes to main to track performance over time
   # push:
   #   branches:
@@ -39,25 +39,25 @@ jobs:
   benchmark:
     name: Benchmark (maxWorkers=${{ matrix.workers }})
     runs-on: ubuntu-latest
-    
+
     # Matrix strategy: Run 3 jobs in parallel, each with different concurrency
     strategy:
       # Do not cancel other matrix jobs if one fails
       # We want to see results for all configurations
       fail-fast: false
-      
+
       matrix:
         workers: [2, 4, 7]
-    
+
     timeout-minutes: 10
-    
+
     steps:
       # ------------------------------------------------------------------------
       # Step 1: Checkout Repository
       # ------------------------------------------------------------------------
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       # ------------------------------------------------------------------------
       # Step 2: Setup Node.js
       # ------------------------------------------------------------------------
@@ -65,33 +65,34 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
       # ------------------------------------------------------------------------
       # Step 3: Setup pnpm
       # ------------------------------------------------------------------------
+      # Version is automatically read from package.json "packageManager" field
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
-      
+          run_install: false
+
       # ------------------------------------------------------------------------
       # Step 4: Install Dependencies
       # ------------------------------------------------------------------------
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      
+
       # ------------------------------------------------------------------------
       # Step 5: Install Playwright Browsers
       # ------------------------------------------------------------------------
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps chromium
-      
+
       # ------------------------------------------------------------------------
       # Step 6: Run Benchmark Test
       # ------------------------------------------------------------------------
       # Runs tests with different maxWorkers values
       # Each matrix job runs one configuration
-      # 
+      #
       # GitHub runner has 2 cores, so:
       # - maxWorkers=2 should be optimal
       # - maxWorkers=4 may not help (CPU bound)
@@ -101,14 +102,14 @@ jobs:
           echo "=========================================="
           echo "Benchmark: maxWorkers=${{ matrix.workers }}"
           echo "=========================================="
-          
+
           # Run tests and capture duration
           time pnpm --filter portfolio exec vitest run --maxWorkers=${{ matrix.workers }} --browser.headless=true
-          
+
           echo "=========================================="
           echo "Benchmark complete: maxWorkers=${{ matrix.workers }}"
           echo "=========================================="
-      
+
       # ------------------------------------------------------------------------
       # Step 7: Report Results
       # ------------------------------------------------------------------------
