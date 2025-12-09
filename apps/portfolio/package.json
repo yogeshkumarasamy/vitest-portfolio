@@ -10,7 +10,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
-    "test": "vitest",
     "test:browser": "vitest",
     "test:browser:headless": "vitest --run --browser.headless=true",
     "test:coverage": "vitest run --coverage",

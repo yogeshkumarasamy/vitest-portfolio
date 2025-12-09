@@ -4,7 +4,7 @@ import { playwright } from '@vitest/browser-playwright';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
-// const isCI = process.env.CI === 'true';
+const isCI = process.env.CI === 'true';
 
 export default defineConfig({
   plugins: [tailwindcss(), react()],
@@ -14,7 +14,7 @@ export default defineConfig({
   test: {
     // Test execution settings
     globals: true,
-    watch: true,
+    watch: false,
     setupFiles: ['./vitest.browser.setup.ts'],
 
     // File patterns
@@ -34,8 +34,8 @@ export default defineConfig({
       ],
       viewport: { width: 1112, height: 834 },
     },
-    reporters: ['dot', 'json'],
-    outputFile: 'test-results/browser-test-results.json',
+    // Reporters: basic for CI, default for local
+    reporters: isCI ? ['basic'] : ['default'],
   },
   resolve: {
     alias: {

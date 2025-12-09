@@ -4,7 +4,8 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**"],
+      "env": ["CI"]
     },
     "lint": {
       "dependsOn": ["^lint"],
@@ -20,6 +21,11 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "test:browser:headless": {
+      "dependsOn": ["^test:browser:headless"],
+      "outputs": [],
+      "env": ["CI"]
     }
   }
 }

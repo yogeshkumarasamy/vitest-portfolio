@@ -1,25 +1,21 @@
 # ============================================================================
-# CI Browser Tests Workflow
+# CI Browser Tests Workflow - TEMPORARILY DISABLED
 # ============================================================================
 # Purpose: Execute browser component tests in headless Playwright
 # Test Count: 39 test suites, 245 tests
 # Browser: Chromium (headless mode)
 # Runner: Vitest with Playwright provider
+# Status: Disabled in favor of ci-browser-tests-sharding.yml
 # ============================================================================
 
-name: CI - Browser Tests
+name: CI - Browser Tests (Disabled)
 
 # ============================================================================
-# Trigger Configuration
+# Trigger Configuration - DISABLED
 # ============================================================================
 on:
-  # Run on every pull request
-  pull_request:
-
-  # Run on pushes to main branch
-  push:
-    branches:
-      - main
+  # Disabled - no triggers active
+  workflow_dispatch: # Only manual trigger via GitHub UI
 
 # ============================================================================
 # Concurrency Control
