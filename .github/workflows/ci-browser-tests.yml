@@ -100,9 +100,10 @@ jobs:
       # ------------------------------------------------------------------------
       - name: Log runner capabilities
         run: |
+          SUITE_COUNT=$(find apps/portfolio/src -name "*.test.tsx" -o -name "*.spec.tsx" | wc -l)
           echo "🖥️  Runner: $(nproc) cores, $(free -h | awk '/^Mem:/ {print $2}') RAM"
           echo "📊 Optimal maxWorkers: $(nproc) (auto-detected by Vitest)"
-          echo "📦 Test Suite: 39 suites, 245 tests"
+          echo "📦 Test Suite: $SUITE_COUNT suites detected"
 
       # ------------------------------------------------------------------------
       # Step 7: Run Browser Tests (Headless)

@@ -139,9 +139,11 @@ jobs:
           Log shard info (Shard ${{ matrix.shardIndex }}/${{ matrix.shardTotal
           }})
         run: |
+          SUITE_COUNT=$(find apps/portfolio/src -name "*.test.tsx" -o -name "*.spec.tsx" | wc -l)
+          SUITES_PER_SHARD=$((SUITE_COUNT / ${{ matrix.shardTotal }}))
           echo "🔀 Shard ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}"
           echo "🖥️  Runner: $(nproc) cores, $(free -h | awk '/^Mem:/ {print $2}') RAM"
-          echo "📊 Expected: ~$((39 / ${{ matrix.shardTotal }})) suites, ~$((245 / ${{ matrix.shardTotal }})) tests"
+          echo "📊 Expected: ~${SUITES_PER_SHARD} of ${SUITE_COUNT} total suites"
           echo "⚡ maxWorkers: $(nproc) (auto-detected per shard)"
 
       # ------------------------------------------------------------------------
