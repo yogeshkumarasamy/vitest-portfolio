@@ -252,7 +252,7 @@ jobs:
             --merge-reports \
             --reporter=dot \
             --reporter=json \
-            --outputFile=test-results/merged-test-report.json
+            --outputFile=test-results-sharded/merged-test-report.json
 
       # ------------------------------------------------------------------------
       # Step 7: Upload Merged Report
@@ -263,6 +263,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: merged-test-results
-          path: apps/portfolio/test-results/
+          name: merged-test-results-sharded
+          path: apps/portfolio/test-results-sharded/
           retention-days: 7
