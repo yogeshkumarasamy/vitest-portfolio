@@ -1,6 +1,19 @@
 import { describe, it, expect } from 'vitest';
 import { render } from 'vitest-browser-react';
-import { H1, H2, H3, H4, P, Lead, Large, Small, Muted, Blockquote, InlineCode, List } from './Typography';
+import {
+  H1,
+  H2,
+  H3,
+  H4,
+  P,
+  Lead,
+  Large,
+  Small,
+  Muted,
+  Blockquote,
+  InlineCode,
+  List,
+} from './Typography';
 
 describe('Typography', () => {
   it('renders H1 heading', async () => {

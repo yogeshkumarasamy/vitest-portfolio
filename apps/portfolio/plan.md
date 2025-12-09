@@ -1,19 +1,21 @@
-Portfolio Website Development Plan (Senior Frontend Engineer)
-Objective
+Portfolio Website Development Plan (Senior Frontend Engineer) Objective
 
-Design and implement a production-grade portfolio website for a Senior Frontend Engineer with experience across 7 organizations, using modern frontend architecture and tooling.
-This project simultaneously serves as:
+Design and implement a production-grade portfolio website for a Senior Frontend
+Engineer with experience across 7 organizations, using modern frontend
+architecture and tooling. This project simultaneously serves as:
 
 A realistic, high-quality portfolio website
 
 A scalable component system
 
-A stress-test environment for Vitest Browser Mode using hundreds of concurrent browser component tests
+A stress-test environment for Vitest Browser Mode using hundreds of concurrent
+browser component tests
 
 A reference architecture for Micro-Frontend + Monorepo workflow using TurboRepo
 
-This project will be reviewed and evaluated as if by a Principal Engineer with 25+ years of frontend engineering experience.
-Apply standards used in FAANG-level or enterprise-scale frontend systems.
+This project will be reviewed and evaluated as if by a Principal Engineer with
+25+ years of frontend engineering experience. Apply standards used in
+FAANG-level or enterprise-scale frontend systems.
 
 Technology Stack (Fixed)
 
@@ -65,8 +67,7 @@ Single-SPA
 
 Webpack Module Federation
 
-Application Architecture Requirements
-Routing
+Application Architecture Requirements Routing
 
 Create ~10 real pages using React Router that feel production-authentic:
 
@@ -102,8 +103,7 @@ Use realistic UI patterns (cards, sections, tables, modals)
 
 Share layout and design system primitives
 
-Component Strategy
-Requirement: Generate ~500 testable UI components
+Component Strategy Requirement: Generate ~500 testable UI components
 
 Create a component-heavy architecture intentionally to stress:
 
@@ -159,11 +159,10 @@ Render in browser
 
 Be testable independently
 
-Testing Strategy (Primary Goal)
-Primary Success Criterion:
+Testing Strategy (Primary Goal) Primary Success Criterion:
 
-Run 150 Vitest browser component test suites(tests) concurrently in headless mode.
-Run 1000 tests across 150 test files concurrently in headless mode
+Run 150 Vitest browser component test suites(tests) concurrently in headless
+mode. Run 1000 tests across 150 test files concurrently in headless mode
 
 Testing Requirements
 
@@ -301,6 +300,4 @@ Test discipline
 
 Scalability thinking
 
-No tutorial-style shortcuts.
-No demo-level patterns.
-No shallow implementations.
+No tutorial-style shortcuts. No demo-level patterns. No shallow implementations.

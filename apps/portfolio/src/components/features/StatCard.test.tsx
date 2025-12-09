@@ -91,9 +91,9 @@ describe('StatCard', () => {
 
   it('renders both description and trend', async () => {
     const screen = await render(
-      <StatCard 
-        title="Revenue" 
-        value="$10,000" 
+      <StatCard
+        title="Revenue"
+        value="$10,000"
         description="Last 30 days"
         trend="up"
         trendValue="15%"

@@ -18,7 +18,9 @@ describe('Alert', () => {
     await expect.element(alert).toBeVisible();
     await expect.element(alert).toHaveAttribute('role', 'alert');
     await expect.element(title).toHaveTextContent('Default Alert');
-    await expect.element(description).toHaveTextContent('This is a default alert message.');
+    await expect
+      .element(description)
+      .toHaveTextContent('This is a default alert message.');
   });
 
   it('renders with destructive variant', async () => {

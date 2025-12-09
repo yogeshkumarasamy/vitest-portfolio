@@ -13,7 +13,9 @@ describe('Skeleton', () => {
   });
 
   it('renders with custom className for different shapes', async () => {
-    const screen = await render(<Skeleton className="h-12 w-12 rounded-full" />);
+    const screen = await render(
+      <Skeleton className="h-12 w-12 rounded-full" />
+    );
 
     const skeleton = screen.getByTestId('skeleton');
 

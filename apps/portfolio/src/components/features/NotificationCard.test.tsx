@@ -6,7 +6,10 @@ import { NotificationCard } from './NotificationCard';
 describe('NotificationCard', () => {
   it('renders notification with title and message', async () => {
     const screen = await render(
-      <NotificationCard title="Success" message="Operation completed successfully" />
+      <NotificationCard
+        title="Success"
+        message="Operation completed successfully"
+      />
     );
 
     const card = screen.getByTestId('notification-card');
@@ -15,13 +18,15 @@ describe('NotificationCard', () => {
 
     await expect.element(card).toBeInTheDocument();
     await expect.element(title).toHaveTextContent('Success');
-    await expect.element(message).toHaveTextContent('Operation completed successfully');
+    await expect
+      .element(message)
+      .toHaveTextContent('Operation completed successfully');
   });
 
   it('renders timestamp when provided', async () => {
     const screen = await render(
-      <NotificationCard 
-        title="Info" 
+      <NotificationCard
+        title="Info"
         message="Update available"
         timestamp="2 minutes ago"
       />
@@ -45,8 +50,8 @@ describe('NotificationCard', () => {
   it('renders dismiss button and handles click', async () => {
     const handleDismiss = vi.fn();
     const screen = await render(
-      <NotificationCard 
-        title="Alert" 
+      <NotificationCard
+        title="Alert"
         message="Important notification"
         onDismiss={handleDismiss}
       />
@@ -71,8 +76,8 @@ describe('NotificationCard', () => {
 
   it('renders with different variants', async () => {
     const screen = await render(
-      <NotificationCard 
-        title="Error" 
+      <NotificationCard
+        title="Error"
         message="Something went wrong"
         variant="destructive"
       />
@@ -85,8 +90,8 @@ describe('NotificationCard', () => {
 
   it('renders with custom className', async () => {
     const screen = await render(
-      <NotificationCard 
-        title="Info" 
+      <NotificationCard
+        title="Info"
         message="Message"
         className="custom-notification"
       />
@@ -100,8 +105,8 @@ describe('NotificationCard', () => {
   it('supports hover on dismiss button', async () => {
     const handleDismiss = vi.fn();
     const screen = await render(
-      <NotificationCard 
-        title="Info" 
+      <NotificationCard
+        title="Info"
         message="Message"
         onDismiss={handleDismiss}
       />

@@ -2,7 +2,14 @@ import { describe, it, expect } from 'vitest';
 import { render } from 'vitest-browser-react';
 import { userEvent } from 'vitest/browser';
 import { useState } from 'react';
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './Dialog';
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from './Dialog';
 
 function DialogExample() {
   const [open, setOpen] = useState(false);
@@ -48,7 +55,9 @@ describe('Dialog', () => {
     await expect.element(overlay).toBeVisible();
     await expect.element(content).toBeVisible();
     await expect.element(title).toHaveTextContent('Dialog Title');
-    await expect.element(description).toHaveTextContent('This is a dialog description.');
+    await expect
+      .element(description)
+      .toHaveTextContent('This is a dialog description.');
   });
 
   it('renders dialog with all sections', async () => {
@@ -65,6 +74,8 @@ describe('Dialog', () => {
     await expect.element(header).toBeVisible();
     await expect.element(title).toBeVisible();
     await expect.element(description).toBeVisible();
-    await expect.element(content).toHaveTextContent('Dialog content goes here.');
+    await expect
+      .element(content)
+      .toHaveTextContent('Dialog content goes here.');
   });
 });

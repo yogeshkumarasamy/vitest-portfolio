@@ -21,8 +21,8 @@ describe('TeamMemberCard', () => {
 
   it('renders avatar with image when provided', async () => {
     const screen = await render(
-      <TeamMemberCard 
-        name="Jane Smith" 
+      <TeamMemberCard
+        name="Jane Smith"
         role="Designer"
         avatar="https://placehold.co/100x100"
       />
@@ -35,8 +35,8 @@ describe('TeamMemberCard', () => {
 
   it('renders bio when provided', async () => {
     const screen = await render(
-      <TeamMemberCard 
-        name="Alice Johnson" 
+      <TeamMemberCard
+        name="Alice Johnson"
         role="Product Manager"
         bio="10 years of experience in product development"
       />
@@ -44,7 +44,9 @@ describe('TeamMemberCard', () => {
 
     const bio = screen.getByTestId('member-bio');
 
-    await expect.element(bio).toHaveTextContent('10 years of experience in product development');
+    await expect
+      .element(bio)
+      .toHaveTextContent('10 years of experience in product development');
   });
 
   it('does not render bio when not provided', async () => {
@@ -60,8 +62,8 @@ describe('TeamMemberCard', () => {
   it('renders skills when provided', async () => {
     const skills = ['React', 'TypeScript', 'Node.js'];
     const screen = await render(
-      <TeamMemberCard 
-        name="Charlie Wilson" 
+      <TeamMemberCard
+        name="Charlie Wilson"
         role="Full Stack Developer"
         skills={skills}
       />
@@ -90,8 +92,8 @@ describe('TeamMemberCard', () => {
 
   it('renders with custom className', async () => {
     const screen = await render(
-      <TeamMemberCard 
-        name="Emma Davis" 
+      <TeamMemberCard
+        name="Emma Davis"
         role="Designer"
         className="custom-member"
       />
@@ -104,8 +106,8 @@ describe('TeamMemberCard', () => {
 
   it('renders with all optional fields', async () => {
     const screen = await render(
-      <TeamMemberCard 
-        name="Frank Miller" 
+      <TeamMemberCard
+        name="Frank Miller"
         role="Tech Lead"
         bio="Passionate about clean code"
         avatar="https://placehold.co/100x100"

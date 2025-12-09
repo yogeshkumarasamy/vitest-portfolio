@@ -1,15 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { MainLayout } from "@/components/layout/MainLayout";
-import { HomePage } from "@/pages/HomePage";
-import { AboutPage } from "@/pages/AboutPage";
-import { ExperiencePage } from "@/pages/ExperiencePage";
-import { SkillsPage } from "@/pages/SkillsPage";
-import { ProjectsPage } from "@/pages/ProjectsPage";
-import { ArchitecturePage } from "@/pages/ArchitecturePage";
-import { MicrofrontendsPage } from "@/pages/MicrofrontendsPage";
-import { ToolingPage } from "@/pages/ToolingPage";
-import { BlogPage } from "@/pages/BlogPage";
-import { ContactPage } from "@/pages/ContactPage";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { MainLayout } from '@/components/layout/MainLayout';
+import { HomePage } from '@/pages/HomePage';
+import { AboutPage } from '@/pages/AboutPage';
+import { ExperiencePage } from '@/pages/ExperiencePage';
+import { SkillsPage } from '@/pages/SkillsPage';
+import { ProjectsPage } from '@/pages/ProjectsPage';
+import { ArchitecturePage } from '@/pages/ArchitecturePage';
+import { MicrofrontendsPage } from '@/pages/MicrofrontendsPage';
+import { ToolingPage } from '@/pages/ToolingPage';
+import { BlogPage } from '@/pages/BlogPage';
+import { ContactPage } from '@/pages/ContactPage';
 
 function App() {
   return (

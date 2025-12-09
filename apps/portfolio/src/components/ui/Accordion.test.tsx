@@ -1,7 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { render } from 'vitest-browser-react';
 import { userEvent } from 'vitest/browser';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './Accordion';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from './Accordion';
 
 describe('Accordion', () => {
   it('renders accordion with multiple items', async () => {

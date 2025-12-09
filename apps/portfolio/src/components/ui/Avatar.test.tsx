@@ -15,7 +15,9 @@ describe('Avatar', () => {
 
     await expect.element(avatar).toBeVisible();
     await expect.element(image).toBeVisible();
-    await expect.element(image).toHaveAttribute('src', 'https://placehold.co/40x40');
+    await expect
+      .element(image)
+      .toHaveAttribute('src', 'https://placehold.co/40x40');
     await expect.element(image).toHaveAttribute('alt', 'Test User');
   });
 
@@ -49,7 +51,11 @@ describe('Avatar', () => {
   it('renders with custom className on avatar image', async () => {
     const screen = await render(
       <Avatar>
-        <AvatarImage src="https://placehold.co/40x40" alt="Test" className="custom-image" />
+        <AvatarImage
+          src="https://placehold.co/40x40"
+          alt="Test"
+          className="custom-image"
+        />
       </Avatar>
     );
 

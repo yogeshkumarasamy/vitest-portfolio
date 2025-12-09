@@ -61,7 +61,12 @@ describe('MetricCard', () => {
 
   it('renders with custom className', async () => {
     const screen = await render(
-      <MetricCard label="Metric" value={50} max={100} className="custom-metric" />
+      <MetricCard
+        label="Metric"
+        value={50}
+        max={100}
+        className="custom-metric"
+      />
     );
 
     const card = screen.getByTestId('metric-card');

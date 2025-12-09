@@ -1,5 +1,10 @@
-import { cn } from "@/lib/utils";
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
+import { cn } from '@/lib/utils';
+import {
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/Card';
 
 interface BlogCardProps {
   title: string;
@@ -26,7 +31,7 @@ export function BlogCard({
     <div
       data-testid="blog-card"
       className={cn(
-        "rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-lg transition-all cursor-pointer hover:border-primary/50",
+        'bg-card text-card-foreground hover:border-primary/50 cursor-pointer rounded-lg border shadow-sm transition-all hover:shadow-lg',
         className
       )}
       onClick={onClick}
@@ -34,7 +39,10 @@ export function BlogCard({
       <CardHeader>
         <div className="space-y-2">
           <CardTitle className="line-clamp-2">{title}</CardTitle>
-          <div data-testid="blog-metadata" className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
+          <div
+            data-testid="blog-metadata"
+            className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400"
+          >
             <span data-testid="blog-date">{date}</span>
             {readTime && (
               <>
@@ -59,7 +67,7 @@ export function BlogCard({
               <span
                 key={tag}
                 data-testid="blog-tag"
-                className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-700 dark:text-gray-200"
+                className="rounded-md bg-gray-100 px-2 py-1 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-200"
               >
                 #{tag}
               </span>

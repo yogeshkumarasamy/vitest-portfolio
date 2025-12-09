@@ -88,10 +88,10 @@ describe('ArchitectureDiagram', () => {
 
   it('renders with custom className', async () => {
     const screen = await render(
-      <ArchitectureDiagram 
-        title="Architecture" 
-        layers={mockLayers} 
-        className="custom-diagram" 
+      <ArchitectureDiagram
+        title="Architecture"
+        layers={mockLayers}
+        className="custom-diagram"
       />
     );
 

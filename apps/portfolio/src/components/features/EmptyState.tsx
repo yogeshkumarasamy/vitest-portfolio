@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/Button";
-import { H3, P } from "@/components/ui/Typography";
-import { cn } from "@/lib/utils";
+import { Button } from '@/components/ui/Button';
+import { H3, P } from '@/components/ui/Typography';
+import { cn } from '@/lib/utils';
 
 interface EmptyStateProps {
   title: string;
@@ -20,16 +20,29 @@ export function EmptyState({
   className,
 }: EmptyStateProps) {
   return (
-    <div data-testid="empty-state" className={cn("flex flex-col items-center justify-center text-center py-12 px-4", className)}>
+    <div
+      data-testid="empty-state"
+      className={cn(
+        'flex flex-col items-center justify-center px-4 py-12 text-center',
+        className
+      )}
+    >
       {icon && (
-        <div data-testid="empty-state-icon" className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 text-gray-400">
+        <div
+          data-testid="empty-state-icon"
+          className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 text-gray-400"
+        >
           {icon}
         </div>
       )}
       <H3 className="mb-2">{title}</H3>
-      {description && <P className="text-gray-600 max-w-md mb-6">{description}</P>}
+      {description && (
+        <P className="mb-6 max-w-md text-gray-600">{description}</P>
+      )}
       {actionLabel && onAction && (
-        <Button data-testid="empty-state-action" onClick={onAction}>{actionLabel}</Button>
+        <Button data-testid="empty-state-action" onClick={onAction}>
+          {actionLabel}
+        </Button>
       )}
     </div>
   );

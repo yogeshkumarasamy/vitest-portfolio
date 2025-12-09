@@ -1,6 +1,6 @@
-import { Input } from "@/components/ui/Input";
-import { cn } from "@/lib/utils";
-import React from "react";
+import { Input } from '@/components/ui/Input';
+import { cn } from '@/lib/utils';
+import React from 'react';
 
 interface SearchBarProps {
   placeholder?: string;
@@ -8,8 +8,12 @@ interface SearchBarProps {
   className?: string;
 }
 
-export function SearchBar({ placeholder = "Search...", onSearch, className }: SearchBarProps) {
-  const [query, setQuery] = React.useState("");
+export function SearchBar({
+  placeholder = 'Search...',
+  onSearch,
+  className,
+}: SearchBarProps) {
+  const [query, setQuery] = React.useState('');
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,10 +21,14 @@ export function SearchBar({ placeholder = "Search...", onSearch, className }: Se
   };
 
   return (
-    <form onSubmit={handleSearch} className={cn("relative", className)} data-testid="search-bar">
+    <form
+      onSubmit={handleSearch}
+      className={cn('relative', className)}
+      data-testid="search-bar"
+    >
       <div className="relative">
         <svg
-          className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
+          className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

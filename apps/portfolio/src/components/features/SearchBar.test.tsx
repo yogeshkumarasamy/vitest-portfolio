@@ -29,7 +29,9 @@ describe('SearchBar', () => {
 
     const input = screen.getByTestId('search-input');
 
-    await expect.element(input).toHaveAttribute('placeholder', 'Search projects...');
+    await expect
+      .element(input)
+      .toHaveAttribute('placeholder', 'Search projects...');
   });
 
   it('updates input value when typing', async () => {
@@ -50,10 +52,10 @@ describe('SearchBar', () => {
 
     await userEvent.click(input);
     await userEvent.type(input, 'test');
-    
+
     // Submit form by pressing Enter
     await userEvent.keyboard('{Enter}');
-    
+
     expect(handleSearch).toHaveBeenCalledWith('test');
   });
 
@@ -73,7 +75,7 @@ describe('SearchBar', () => {
     await userEvent.click(input);
     await userEvent.type(input, 'test');
     await expect.element(input).toHaveValue('test');
-    
+
     await userEvent.clear(input);
     await expect.element(input).toHaveValue('');
   });

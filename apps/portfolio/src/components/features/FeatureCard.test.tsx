@@ -5,8 +5,8 @@ import { FeatureCard } from './FeatureCard';
 describe('FeatureCard', () => {
   it('renders feature card with title and description', async () => {
     const screen = await render(
-      <FeatureCard 
-        title="Fast Performance" 
+      <FeatureCard
+        title="Fast Performance"
         description="Optimized for speed and efficiency"
       />
     );
@@ -17,13 +17,15 @@ describe('FeatureCard', () => {
 
     await expect.element(card).toBeInTheDocument();
     await expect.element(title).toHaveTextContent('Fast Performance');
-    await expect.element(description).toHaveTextContent('Optimized for speed and efficiency');
+    await expect
+      .element(description)
+      .toHaveTextContent('Optimized for speed and efficiency');
   });
 
   it('renders icon when provided', async () => {
     const screen = await render(
-      <FeatureCard 
-        title="Feature" 
+      <FeatureCard
+        title="Feature"
         description="Description"
         icon={<svg data-testid="custom-icon" />}
       />
@@ -38,10 +40,7 @@ describe('FeatureCard', () => {
 
   it('does not render icon container when icon not provided', async () => {
     const screen = await render(
-      <FeatureCard 
-        title="Feature" 
-        description="Description"
-      />
+      <FeatureCard title="Feature" description="Description" />
     );
 
     const card = screen.getByTestId('feature-card');
@@ -51,8 +50,8 @@ describe('FeatureCard', () => {
 
   it('renders with custom className', async () => {
     const screen = await render(
-      <FeatureCard 
-        title="Feature" 
+      <FeatureCard
+        title="Feature"
         description="Description"
         className="custom-feature"
       />

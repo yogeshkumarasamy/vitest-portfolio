@@ -1,0 +1,15 @@
+node_modules
+.vscode
+.idea
+.turbo
+pnpm-lock.yaml
+
+# artifacts
+.turbo
+build
+dist
+out
+bin
+coverage
+test-results
+

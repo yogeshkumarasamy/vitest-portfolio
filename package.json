@@ -3,17 +3,20 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "check": "pnpm lint && pnpm check:format && pnpm build && pnpm check-types",
+    "check-types": "turbo run check-types",
+    "check:format": "prettier --config .prettierrc.json --write --cache --ignore-path .prettierignore \"**/*.{js,jsx,mjs,ts,tsx,md,json}\"",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "lint": "turbo run lint"
   },
   "devDependencies": {
-    "prettier": "^3.6.2",
-    "turbo": "^2.6.1",
-    "typescript": "5.9.2"
+    "prettier": "catalog:",
+    "prettier-plugin-packagejson": "catalog:",
+    "prettier-plugin-tailwindcss": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:"
   },
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@10.17.0",
   "engines": {
     "node": ">=18"
   }

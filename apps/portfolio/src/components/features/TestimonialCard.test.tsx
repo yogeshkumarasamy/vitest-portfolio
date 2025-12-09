@@ -21,7 +21,9 @@ describe('TestimonialCard', () => {
     const avatar = screen.getByTestId('testimonial-avatar');
 
     await expect.element(card).toBeInTheDocument();
-    await expect.element(quote).toHaveTextContent('"This is an amazing product!"');
+    await expect
+      .element(quote)
+      .toHaveTextContent('"This is an amazing product!"');
     await expect.element(author).toHaveTextContent('John Doe');
     await expect.element(role).toHaveTextContent('CEO at Tech Corp');
     await expect.element(avatar).toBeInTheDocument();
@@ -86,6 +88,8 @@ describe('TestimonialCard', () => {
 
     const role = screen.getByTestId('testimonial-role');
 
-    await expect.element(role).toHaveTextContent('Product Manager at Innovation Labs');
+    await expect
+      .element(role)
+      .toHaveTextContent('Product Manager at Innovation Labs');
   });
 });

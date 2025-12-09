@@ -10,7 +10,9 @@ describe('Textarea', () => {
     const textarea = screen.getByTestId('textarea');
 
     await expect.element(textarea).toBeVisible();
-    await expect.element(textarea).toHaveAttribute('placeholder', 'Enter description');
+    await expect
+      .element(textarea)
+      .toHaveAttribute('placeholder', 'Enter description');
   });
 
   it('accepts text input', async () => {

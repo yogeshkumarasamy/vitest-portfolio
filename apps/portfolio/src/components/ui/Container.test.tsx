@@ -14,7 +14,9 @@ describe('Container', () => {
 
     await expect.element(container).toBeVisible();
     await expect.element(container).toHaveClass('max-w-7xl');
-    await expect.element(container).toHaveTextContent('Content inside container');
+    await expect
+      .element(container)
+      .toHaveTextContent('Content inside container');
   });
 
   it('renders with small size', async () => {

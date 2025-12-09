@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import React from "react";
+import { cn } from '@/lib/utils';
+import React from 'react';
 
 interface TabsProps {
   children: React.ReactNode;
@@ -27,21 +27,29 @@ interface TabsContentProps {
 const TabsContext = React.createContext<{
   value: string;
   onChange: (value: string) => void;
-}>({ value: "", onChange: () => {} });
+}>({ value: '', onChange: () => {} });
 
-export function Tabs({ children, className, defaultValue = "" }: TabsProps) {
+export function Tabs({ children, className, defaultValue = '' }: TabsProps) {
   const [value, setValue] = React.useState(defaultValue);
 
   return (
     <TabsContext.Provider value={{ value, onChange: setValue }}>
-      <div data-testid="tabs" className={cn("w-full", className)}>{children}</div>
+      <div data-testid="tabs" className={cn('w-full', className)}>
+        {children}
+      </div>
     </TabsContext.Provider>
   );
 }
 
 export function TabsList({ children, className }: TabsListProps) {
   return (
-    <div data-testid="tabs-list" className={cn("inline-flex h-10 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-700", className)}>
+    <div
+      data-testid="tabs-list"
+      className={cn(
+        'inline-flex h-10 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-700',
+        className
+      )}
+    >
       {children}
     </div>
   );
@@ -55,8 +63,10 @@ export function TabsTrigger({ children, className, value }: TabsTriggerProps) {
     <button
       data-testid="tabs-trigger"
       className={cn(
-        "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-        isActive ? "bg-white text-gray-900 shadow-sm" : "text-gray-600 hover:text-gray-900",
+        'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+        isActive
+          ? 'bg-white text-gray-900 shadow-sm'
+          : 'text-gray-600 hover:text-gray-900',
         className
       )}
       onClick={() => onChange(value)}
@@ -72,7 +82,13 @@ export function TabsContent({ children, className, value }: TabsContentProps) {
   if (selectedValue !== value) return null;
 
   return (
-    <div data-testid="tabs-content" className={cn("mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2", className)}>
+    <div
+      data-testid="tabs-content"
+      className={cn(
+        'mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2',
+        className
+      )}
+    >
       {children}
     </div>
   );

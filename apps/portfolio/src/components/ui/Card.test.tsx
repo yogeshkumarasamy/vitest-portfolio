@@ -1,6 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { render } from 'vitest-browser-react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './Card';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from './Card';
 
 describe('Card', () => {
   it('renders complete card with all sections', async () => {
@@ -29,7 +36,9 @@ describe('Card', () => {
     await expect.element(card).toBeVisible();
     await expect.element(header).toBeVisible();
     await expect.element(title).toHaveTextContent('Card Title');
-    await expect.element(description).toHaveTextContent('Card description text');
+    await expect
+      .element(description)
+      .toHaveTextContent('Card description text');
     await expect.element(content).toBeVisible();
     await expect.element(footer).toBeVisible();
   });
@@ -91,7 +100,9 @@ describe('Card', () => {
     const image = screen.getByRole('img');
 
     await expect.element(content).toBeVisible();
-    await expect.element(image).toHaveAttribute('src', 'https://placehold.co/400x200');
+    await expect
+      .element(image)
+      .toHaveAttribute('src', 'https://placehold.co/400x200');
     await expect.element(image).toHaveAttribute('alt', 'Card image');
   });
 });

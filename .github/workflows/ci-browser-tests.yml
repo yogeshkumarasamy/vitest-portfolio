@@ -15,7 +15,7 @@ name: CI - Browser Tests
 on:
   # Run on every pull request
   pull_request:
-  
+
   # Run on pushes to main branch
   push:
     branches:
@@ -40,19 +40,19 @@ jobs:
   test:
     name: Browser Tests (Headless)
     runs-on: ubuntu-latest
-    
+
     # Timeout after 10 minutes to prevent hanging jobs
     # Browser tests should complete in ~3-5 seconds based on local benchmarks
     # 10 minutes allows for slow runners and potential flakiness
     timeout-minutes: 10
-    
+
     steps:
       # ------------------------------------------------------------------------
       # Step 1: Checkout Repository
       # ------------------------------------------------------------------------
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       # ------------------------------------------------------------------------
       # Step 2: Setup Node.js
       # ------------------------------------------------------------------------
@@ -60,7 +60,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
       # ------------------------------------------------------------------------
       # Step 3: Setup pnpm
       # ------------------------------------------------------------------------
@@ -68,7 +68,7 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 9
-      
+
       # ------------------------------------------------------------------------
       # Step 4: Install Dependencies
       # ------------------------------------------------------------------------
@@ -78,42 +78,42 @@ jobs:
       # - All component dependencies
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      
+
       # ------------------------------------------------------------------------
       # Step 5: Install Playwright Browsers
       # ------------------------------------------------------------------------
       # CRITICAL STEP: Downloads the actual Chromium browser binary (~200MB)
       # --with-deps installs system dependencies (fonts, libraries) needed by Chromium
-      # 
+      #
       # Why chromium only?
       # - vitest.config.ts specifies browser: 'chromium'
       # - No need to download Firefox/WebKit
-      # 
+      #
       # This step takes ~40 seconds on fresh install
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps chromium
-      
+
       # ------------------------------------------------------------------------
       # Step 6: Run Browser Tests (Headless)
       # ------------------------------------------------------------------------
       # Executes: vitest --run --maxWorkers=2 --browser.headless=true
-      # 
+      #
       # --run: One-time execution (no watch mode)
       # --maxWorkers=2: Optimal for 2-core GitHub runners
       # --browser.headless=true: No GUI, pure headless execution
-      # 
+      #
       # Expected behavior:
       # - Launches Chromium in headless mode
       # - Runs all 245 tests across 39 suites
       # - Duration: ~3-5 seconds (based on local benchmarks)
-      # 
+      #
       # What happens on failure:
       # - Job exits with code 1
       # - GitHub marks PR check as failed
       # - Logs are preserved in job output
       - name: Run browser tests
         run: pnpm --filter portfolio test:browser:headless
-      
+
       # ------------------------------------------------------------------------
       # Step 7: Upload Test Results (On Failure)
       # ------------------------------------------------------------------------
@@ -121,11 +121,11 @@ jobs:
       # Vitest can be configured to save screenshots on test failure
       # This step only runs if the previous step fails
       - name: Upload test artifacts
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: |
             apps/portfolio/test-results/
-            apps/portfolio/playwright-report/
           retention-days: 7
+          if-no-files-found: warn

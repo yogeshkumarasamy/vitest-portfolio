@@ -8,7 +8,11 @@ describe('Pagination', () => {
 
   it('renders pagination with current and total pages', async () => {
     const screen = await render(
-      <Pagination currentPage={1} totalPages={5} onPageChange={mockOnPageChange} />
+      <Pagination
+        currentPage={1}
+        totalPages={5}
+        onPageChange={mockOnPageChange}
+      />
     );
 
     const pagination = screen.getByTestId('pagination');
@@ -22,7 +26,11 @@ describe('Pagination', () => {
 
   it('renders page buttons', async () => {
     const screen = await render(
-      <Pagination currentPage={3} totalPages={5} onPageChange={mockOnPageChange} />
+      <Pagination
+        currentPage={3}
+        totalPages={5}
+        onPageChange={mockOnPageChange}
+      />
     );
 
     const page1 = screen.getByTestId('pagination-page-1');
@@ -40,7 +48,11 @@ describe('Pagination', () => {
 
   it('disables previous button on first page', async () => {
     const screen = await render(
-      <Pagination currentPage={1} totalPages={5} onPageChange={mockOnPageChange} />
+      <Pagination
+        currentPage={1}
+        totalPages={5}
+        onPageChange={mockOnPageChange}
+      />
     );
 
     const previous = screen.getByTestId('pagination-previous');
@@ -50,7 +62,11 @@ describe('Pagination', () => {
 
   it('disables next button on last page', async () => {
     const screen = await render(
-      <Pagination currentPage={5} totalPages={5} onPageChange={mockOnPageChange} />
+      <Pagination
+        currentPage={5}
+        totalPages={5}
+        onPageChange={mockOnPageChange}
+      />
     );
 
     const next = screen.getByTestId('pagination-next');
@@ -60,7 +76,11 @@ describe('Pagination', () => {
 
   it('calls onPageChange when clicking previous button', async () => {
     const screen = await render(
-      <Pagination currentPage={3} totalPages={5} onPageChange={mockOnPageChange} />
+      <Pagination
+        currentPage={3}
+        totalPages={5}
+        onPageChange={mockOnPageChange}
+      />
     );
 
     const previous = screen.getByTestId('pagination-previous');
@@ -71,7 +91,11 @@ describe('Pagination', () => {
 
   it('calls onPageChange when clicking next button', async () => {
     const screen = await render(
-      <Pagination currentPage={3} totalPages={5} onPageChange={mockOnPageChange} />
+      <Pagination
+        currentPage={3}
+        totalPages={5}
+        onPageChange={mockOnPageChange}
+      />
     );
 
     const next = screen.getByTestId('pagination-next');
@@ -82,7 +106,11 @@ describe('Pagination', () => {
 
   it('calls onPageChange when clicking page button', async () => {
     const screen = await render(
-      <Pagination currentPage={1} totalPages={5} onPageChange={mockOnPageChange} />
+      <Pagination
+        currentPage={1}
+        totalPages={5}
+        onPageChange={mockOnPageChange}
+      />
     );
 
     const page2 = screen.getByTestId('pagination-page-2');
@@ -93,9 +121,9 @@ describe('Pagination', () => {
 
   it('renders with custom className', async () => {
     const screen = await render(
-      <Pagination 
-        currentPage={1} 
-        totalPages={5} 
+      <Pagination
+        currentPage={1}
+        totalPages={5}
         onPageChange={mockOnPageChange}
         className="custom-pagination"
       />
