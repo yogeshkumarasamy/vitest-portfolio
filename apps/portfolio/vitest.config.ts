@@ -4,8 +4,6 @@ import { playwright } from '@vitest/browser-playwright';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
-const isCI = process.env.CI === 'true';
-
 export default defineConfig({
   plugins: [tailwindcss(), react()],
   optimizeDeps: {
@@ -34,8 +32,7 @@ export default defineConfig({
       ],
       viewport: { width: 1112, height: 834 },
     },
-    // Reporters: basic for CI, default for local
-    reporters: isCI ? ['basic'] : ['default'],
+    // Reporters configured via CLI flags in package.json scripts
   },
   resolve: {
     alias: {
