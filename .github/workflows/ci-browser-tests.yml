@@ -64,10 +64,11 @@ jobs:
       # ------------------------------------------------------------------------
       # Step 3: Setup pnpm
       # ------------------------------------------------------------------------
+      # Version is automatically read from package.json "packageManager" field
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          run_install: false
 
       # ------------------------------------------------------------------------
       # Step 4: Install Dependencies
