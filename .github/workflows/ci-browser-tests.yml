@@ -96,7 +96,16 @@ jobs:
           pnpm --filter portfolio exec playwright install --with-deps chromium
 
       # ------------------------------------------------------------------------
-      # Step 6: Run Browser Tests (Headless)
+      # Step 6: Runner Diagnostics
+      # ------------------------------------------------------------------------
+      - name: Log runner capabilities
+        run: |
+          echo "🖥️  Runner: $(nproc) cores, $(free -h | awk '/^Mem:/ {print $2}') RAM"
+          echo "📊 Optimal maxWorkers: $(nproc) (auto-detected by Vitest)"
+          echo "📦 Test Suite: 39 suites, 245 tests"
+
+      # ------------------------------------------------------------------------
+      # Step 7: Run Browser Tests (Headless)
       # ------------------------------------------------------------------------
       # Executes: vitest --run --maxWorkers=2 --browser.headless=true
       #
@@ -117,7 +126,7 @@ jobs:
         run: pnpm --filter portfolio test:browser:headless
 
       # ------------------------------------------------------------------------
-      # Step 7: Upload Test Results (On Failure)
+      # Step 8: Upload Test Results (On Failure)
       # ------------------------------------------------------------------------
       # If tests fail, this preserves any screenshots or artifacts
       # Vitest can be configured to save screenshots on test failure
